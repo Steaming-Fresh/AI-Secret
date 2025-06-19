@@ -1,0 +1,6 @@
+@echo off
+echo 启动定密工作数字化管理系统...
+echo.
+echo 正在启动服务器...
+node server.js
+pause
