@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定密工作数字化管理系统</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部导航 -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1>定密工作数字化管理系统</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-info">
+                    欢迎，<span id="user-name"></span>
+                    (<span id="user-role"></span>)
+                </span>
+                <button id="logout-btn" class="logout-btn">注销</button>
+            </div>
+        </header>
+
+        <div class="app-body">
+            <!-- 侧边栏 -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <div class="nav-item active" data-tab="dashboard">
+                        <span class="nav-icon">📊</span>
+                        <span>工作台</span>
+                    </div>
+                    <div class="nav-item" data-tab="knowledge">
+                        <span class="nav-icon">📚</span>
+                        <span>知识库</span>
+                    </div>
+                    <div class="nav-item" data-tab="workflow">
+                        <span class="nav-icon">🔄</span>
+                        <span>定密流程</span>
+                    </div>
+                    <div class="nav-item" data-tab="ledger">
+                        <span class="nav-icon">📋</span>
+                        <span>秘密台账</span>
+                    </div>
+                    <div class="nav-item" data-tab="users" data-roles="admin">
+                        <span class="nav-icon">👥</span>
+                        <span>用户管理</span>
+                    </div>
+                    <div class="nav-item" data-tab="audit" data-roles="admin,supervisor">
+                        <span class="nav-icon">🔍</span>
+                        <span>审计监督</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- 主内容区 -->
+            <main class="main-content">
+                <!-- 工作台 -->
+                <div id="dashboard-tab" class="tab-content active">
+                    <div class="dashboard">
+                        <h2>工作台概览</h2>
+                        <div class="stats-cards">
+                            <div class="stat-card">
+                                <div class="stat-number" id="total-secrets">0</div>
+                                <div class="stat-label">总秘密数量</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="pending-applications">0</div>
+                                <div class="stat-label">待审批申请</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="expiring-soon">0</div>
+                                <div class="stat-label">即将到期</div>
+                            </div>
+                        </div>
+                        
+                        <div class="recent-activities">
+                            <h3>最近活动</h3>
+                            <div id="recent-logs" class="activity-list">
+                                <!-- 动态加载 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 知识库 -->
+                <div id="knowledge-tab" class="tab-content">
+                    <div class="knowledge-section">
+                        <div class="section-header">
+                            <h2>定密依据知识库</h2>
+                        </div>
+                        
+                        <div class="search-filters">
+                            <input type="text" id="knowledge-search" placeholder="搜索标题、内容或关键词...">
+                            <select id="category-filter">
+                                <option value="">全部分类</option>
+                            </select>
+                        </div>
+                        
+                        <div id="knowledge-list" class="knowledge-list">
+                            <!-- 动态加载 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 定密流程 -->
+                <div id="workflow-tab" class="tab-content">
+                    <div class="workflow-section">
+                        <div class="section-header">
+                            <h2>定密申请管理</h2>
+                            <button id="new-application-btn" class="btn btn-primary" data-roles="proposer">提交新申请</button>
+                        </div>
+                        
+                        <div class="application-filters">
+                            <select id="status-filter">
+                                <option value="">全部状态</option>
+                                <option value="pending">待审批</option>
+                                <option value="approved">已批准</option>
+                                <option value="rejected">已驳回</option>
+                            </select>
+                        </div>
+                        
+                        <div id="applications-list" class="applications-list">
+                            <!-- 动态加载 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 秘密台账 -->
+                <div id="ledger-tab" class="tab-content">
+                    <div class="ledger-section">
+                        <div class="section-header">
+                            <h2>国家秘密台账</h2>
+                        </div>
+                        
+                        <div class="ledger-filters">
+                            <select id="ledger-status-filter">
+                                <option value="">全部状态</option>
+                                <option value="active">有效</option>
+                                <option value="changed">变更</option>
+                                <option value="declassified">解密</option>
+                            </select>
+                            <select id="level-filter">
+                                <option value="">全部密级</option>
+                                <option value="绝密">绝密</option>
+                                <option value="机密">机密</option>
+                                <option value="秘密">秘密</option>
+                            </select>
+                        </div>
+                        
+                        <div id="secrets-list" class="secrets-list">
+                            <!-- 动态加载 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 用户管理 -->
+                <div id="users-tab" class="tab-content">
+                    <div class="users-section">
+                        <div class="section-header">
+                            <h2>用户管理</h2>
+                        </div>
+                        
+                        <div id="users-list" class="users-list">
+                            <!-- 动态加载 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 审计监督 -->
+                <div id="audit-tab" class="tab-content">
+                    <div class="audit-section">
+                        <div class="section-header">
+                            <h2>审计监督</h2>
+                        </div>
+                        
+                        <div class="audit-filters">
+                            <input type="date" id="start-date" placeholder="开始日期">
+                            <input type="date" id="end-date" placeholder="结束日期">
+                            <select id="action-filter">
+                                <option value="">全部操作</option>
+                                <option value="login">登录</option>
+                                <option value="create">创建</option>
+                                <option value="update">更新</option>
+                                <option value="approve">审批</option>
+                            </select>
+                        </div>
+                        
+                        <div id="audit-logs" class="audit-logs">
+                            <!-- 动态加载 -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定密工作数字化管理系统 - 登录</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>定密工作数字化管理系统</h1>
+                <p>Classification Management System</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">登录</button>
+                
+                <div id="error-message" class="error-message" style="display: none;"></div>
+            </form>
+            
+            <div class="demo-accounts">
+                <h3>演示账户</h3>
+                <div class="account-list">
+                    <div class="account-item">
+                        <strong>系统管理员:</strong> admin / admin123
+                    </div>
+                    <div class="account-item">
+                        <strong>承办人:</strong> proposer / prop123
+                    </div>
+                    <div class="account-item">
+                        <strong>定密责任人:</strong> officer / off123
+                    </div>
+                    <div class="account-item">
+                        <strong>监督员:</strong> supervisor / sup123
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/login.js"></script>
+</body>
+</html>
